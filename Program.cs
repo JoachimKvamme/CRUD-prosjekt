@@ -3,6 +3,7 @@ using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>(); 
 builder.Services.AddScoped<IBookRepository , BookRepository>(); 
+
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options => 
+    {
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+    });
+
 
 
 var app = builder.Build();
