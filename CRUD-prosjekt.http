@@ -1,0 +1,6 @@
+@CRUD_prosjekt_HostAddress = http://localhost:5024
+
+GET {{CRUD_prosjekt_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
