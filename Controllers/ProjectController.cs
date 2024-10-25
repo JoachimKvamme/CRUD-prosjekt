@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CRUD_prosjekt.Data;
+using CRUD_prosjekt.Dto;
 using CRUD_prosjekt.Interfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,25 @@ namespace CRUD_prosjekt.Controllers
         {
             var projects = await _projectRepo.GetAllAsync();
             return Ok(projects);
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+            
+            var project = await _projectRepo.GetByIdAsync(id);
+
+            if(project == null) return NotFound();
+
+            return Ok(project);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateProjectRequestDto projectDto)
+        {
+            
         }
     }
 }
