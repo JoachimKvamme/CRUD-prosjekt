@@ -11,6 +11,7 @@ namespace CRUD_prosjekt.Models
         public string Title { get; set; } = string.Empty;
         public string FirstNameAuthor {get; set;} = string.Empty;
         public string LastNameAuthor {get; set;} = string.Empty;
+        public int Year {get; set;}
         public int? ProjectId {get; set;}
         public Project? Project {get; set;}
     }
