@@ -16,14 +16,24 @@ namespace CRUD_prosjekt.Repositories
         {
             _context = context;
         }
-        public Task<Project> CreateAsync()
+        public async Task<Project> CreateAsync(Project projectModel)
         {
-            throw new NotImplementedException();
+            await _context.Projects.AddAsync(projectModel);
+            await _context.SaveChangesAsync();
+            return projectModel;
         }
 
-        public Task<Project?> DeleteAsync(int id)
+
+        public async Task<Project?> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var projectModel = await _context.Projects.FirstOrDefaultAsync(p => p.Id == id);
+
+            if(projectModel == null) return null;
+
+            _context.Projects.Remove(projectModel);
+            await _context.SaveChangesAsync();
+
+            return projectModel;
         }
 
         public async Task<List<Project>> GetAllAsync()
@@ -32,9 +42,9 @@ namespace CRUD_prosjekt.Repositories
             return await projects.ToListAsync();
         }
 
-        public Task<Project?> GetByIdAsync()
+        public async Task<Project?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Projects.Include(b => b.Books).FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public Task<Project?> UpdateAsync(int id, Project projectDto)

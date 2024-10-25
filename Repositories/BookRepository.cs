@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CRUD_prosjekt.Data;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Models;
 
@@ -9,7 +10,13 @@ namespace CRUD_prosjekt.Repositories
 {
     public class BookRepository : IBookRepository
     {
-        public Task<Book> CreateAsync()
+
+        private readonly ApplicationDbContext _context;
+        public BookRepository(Parameters)
+        {
+            
+        }
+        public Task<Book> CreateAsync(Book bookModel)
         {
             throw new NotImplementedException();
         }
@@ -24,7 +31,7 @@ namespace CRUD_prosjekt.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Book?> GetByIdAsync()
+        public Task<Book?> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
