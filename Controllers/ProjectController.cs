@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CRUD_prosjekt.Data;
 using CRUD_prosjekt.Dto;
 using CRUD_prosjekt.Interfaces;
+using CRUD_prosjekt.Mappers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
@@ -47,7 +48,14 @@ namespace CRUD_prosjekt.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProjectRequestDto projectDto)
         {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
             
+            var projectModel = projectDto.ToProjectFromCreateDto();
+
+            await _projectRepo.CreateAsync(projectModel);
+
+            return CreatedAtAction(nameof(GetById), new {id = projectModel.Id}, projectModel.ToProjectDto());
         }
     }
 }
