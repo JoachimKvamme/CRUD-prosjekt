@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CRUD_prosjekt.Data;
+using CRUD_prosjekt.Dto.Book;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Models;
 using Microsoft.EntityFrameworkCore;
@@ -46,9 +47,19 @@ namespace CRUD_prosjekt.Repositories
             return await _context.Books.FirstOrDefaultAsync(b => b.Id == id);
         }
 
-        public Task<Book?> UpdateAsync(int id, Book bookDto)
+        public async Task<Book?> UpdateAsync(int id, UpdateBookDto bookDto)
         {
-            throw new NotImplementedException();
+            var existingBook = await _context.Books.FindAsync(id);
+
+            if(existingBook == null) return null;
+
+            existingBook.Title = bookDto.Title;
+            existingBook.FirstNameAuthor = bookDto.FirstNameAuthor;
+            existingBook.LastNameAuthor = bookDto.LastNameAuthor;
+            existingBook.Year = bookDto.Year;
+            existingBook.Place = bookDto.Place;
+
+            return existingBook;
         }
     }
 }

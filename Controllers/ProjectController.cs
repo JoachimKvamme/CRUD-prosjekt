@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CRUD_prosjekt.Data;
 using CRUD_prosjekt.Dto;
+using CRUD_prosjekt.Dto.Project;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Mappers;
 using Microsoft.AspNetCore.Components;
@@ -56,6 +57,38 @@ namespace CRUD_prosjekt.Controllers
             await _projectRepo.CreateAsync(projectModel);
 
             return CreatedAtAction(nameof(GetById), new {id = projectModel.Id}, projectModel.ToProjectDto());
+        }
+
+        [HttpPut]
+        [Route("{id:int}")]
+
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateProjectDto updateDto)
+        {
+            if(!ModelState.IsValid) 
+                return BadRequest(ModelState);
+            
+            var projectModel = await _projectRepo.UpdateAsync(id, updateDto);
+
+            if(projectModel == null)
+                return NotFound();
+            
+            return Ok(projectModel);
+        }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest();
+            
+            var projectModel = await _projectRepo.DeleteAsync(id);
+
+            if(projectModel == null)
+                return NotFound();
+            
+            return NoContent();
         }
     }
 }

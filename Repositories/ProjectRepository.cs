@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CRUD_prosjekt.Data;
+using CRUD_prosjekt.Dto.Project;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Models;
 using Microsoft.EntityFrameworkCore;
@@ -47,9 +48,17 @@ namespace CRUD_prosjekt.Repositories
             return await _context.Projects.Include(b => b.Books).FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public Task<Project?> UpdateAsync(int id, Project projectDto)
+        public async Task<Project?> UpdateAsync(int id, UpdateProjectDto projectDto)
         {
-            throw new NotImplementedException();
+            var existingProject = await _context.Projects.FirstOrDefaultAsync(p => p.Id == id);
+
+            if(existingProject == null) return null;
+
+            existingProject.Title = projectDto.Title;
+
+            await _context.SaveChangesAsync();
+            return existingProject;
+
         }
     }
 }
