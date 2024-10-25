@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CRUD_prosjekt.Data;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUD_prosjekt.Repositories
 {
@@ -12,28 +13,37 @@ namespace CRUD_prosjekt.Repositories
     {
 
         private readonly ApplicationDbContext _context;
-        public BookRepository(Parameters)
+        public BookRepository(ApplicationDbContext context)
         {
-            
+            _context = context;
         }
-        public Task<Book> CreateAsync(Book bookModel)
+        public async Task<Book> CreateAsync(Book bookModel)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Book?> DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
+            await _context.Books.AddAsync(bookModel);
+            await _context.SaveChangesAsync();
+            return bookModel;
         }
 
-        public Task<List<Book>> GetAllAsync()
+        public async Task<Book?> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var bookModel = await _context.Books.FirstOrDefaultAsync(b => b.Id == id);
+
+            if(bookModel == null) return null;
+
+            _context.Books.Remove(bookModel);
+            await _context.SaveChangesAsync();
+
+            return bookModel;
         }
 
-        public Task<Book?> GetByIdAsync(int id)
+        public async Task<List<Book>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Books.ToListAsync();
+        }
+
+        public async Task<Book?> GetByIdAsync(int id)
+        {
+            return await _context.Books.FirstOrDefaultAsync(b => b.Id == id);
         }
 
         public Task<Book?> UpdateAsync(int id, Book bookDto)
