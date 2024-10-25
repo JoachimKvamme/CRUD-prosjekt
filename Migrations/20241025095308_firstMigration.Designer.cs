@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUD_prosjekt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241025080814_initialMigration")]
-    partial class initialMigration
+    [Migration("20241025095308_firstMigration")]
+    partial class firstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,11 +41,14 @@ namespace CRUD_prosjekt.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("books");
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("CRUD_prosjekt.Models.Project", b =>

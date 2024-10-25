@@ -38,11 +38,14 @@ namespace CRUD_prosjekt.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("books");
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("CRUD_prosjekt.Models.Project", b =>

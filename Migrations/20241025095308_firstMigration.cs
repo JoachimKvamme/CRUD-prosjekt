@@ -5,7 +5,7 @@
 namespace CRUD_prosjekt.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration : Migration
+    public partial class firstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,7 +24,7 @@ namespace CRUD_prosjekt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "books",
+                name: "Books",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -32,21 +32,22 @@ namespace CRUD_prosjekt.Migrations
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     FirstNameAuthor = table.Column<string>(type: "TEXT", nullable: false),
                     LastNameAuthor = table.Column<string>(type: "TEXT", nullable: false),
+                    Year = table.Column<int>(type: "INTEGER", nullable: false),
                     ProjectId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_books", x => x.Id);
+                    table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_books_Projects_ProjectId",
+                        name: "FK_Books_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_books_ProjectId",
-                table: "books",
+                name: "IX_Books_ProjectId",
+                table: "Books",
                 column: "ProjectId");
         }
 
@@ -54,7 +55,7 @@ namespace CRUD_prosjekt.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "books");
+                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "Projects");
