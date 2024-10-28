@@ -15,6 +15,7 @@ namespace CRUD_prosjekt.Interfaces
         Task<Project?> UpdateAsync(int id, UpdateProjectDto projectDto);
         Task<Project?> DeleteAsync(int id);
         Task<bool> ProjectExists(int id); 
+        Task<List<Book>> GetBookListById(int id);
 
     }
 }
