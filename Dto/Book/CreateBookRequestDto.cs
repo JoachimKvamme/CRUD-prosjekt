@@ -17,6 +17,8 @@ namespace CRUD_prosjekt.Dto.Book
         [Required]
         public int Year {get; set;}
         [Required]
+        public string Publisher {get; set;} = string.Empty;
+        [Required]
         public string Place { get; set; } = string.Empty;
    
     }

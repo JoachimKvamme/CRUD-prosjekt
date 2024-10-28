@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CRUD_prosjekt.Dto.Book;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -46,5 +47,23 @@ namespace CRUD_prosjekt.Controllers
 
             return Ok(book.ToBookDto());
         }
+
+        [HttpPost("{projectId:int}")]
+        public async Task<IActionResult> Create([FromRoute] int projectId, [FromBody] CreateBookRequestDto bookDto)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest();
+            
+            if(!await _projectRepo.ProjectExists(projectId))
+                return BadRequest("Project does not exist");
+
+            var bookModel = bookDto.ToBookFromCreate(projectId);
+
+            await _bookRepo.CreateAsync(bookModel);
+            return CreatedAtAction(nameof(GetById), new {id = bookModel.Id}, bookModel.ToBookDto());
+        }
+
+        
+
     }
 }

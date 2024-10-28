@@ -48,6 +48,11 @@ namespace CRUD_prosjekt.Repositories
             return await _context.Projects.Include(b => b.Books).FirstOrDefaultAsync(p => p.Id == id);
         }
 
+        public Task<bool> ProjectExists(int id)
+        {
+            return _context.Projects.AnyAsync(p => p.Id == id);
+        }
+
         public async Task<Project?> UpdateAsync(int id, UpdateProjectDto projectDto)
         {
             var existingProject = await _context.Projects.FirstOrDefaultAsync(p => p.Id == id);
@@ -60,5 +65,7 @@ namespace CRUD_prosjekt.Repositories
             return existingProject;
 
         }
+
+        
     }
 }

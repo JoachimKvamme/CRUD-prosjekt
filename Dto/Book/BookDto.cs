@@ -12,6 +12,7 @@ namespace CRUD_prosjekt.Dto.Book
         public string FirstNameAuthor {get; set;} = string.Empty;
         public string LastNameAuthor {get; set;} = string.Empty;
         public int Year {get; set;}
+        public string Publisher {get; set;} = string.Empty;
         public string Place { get; set; } = string.Empty;
         public int? ProjectId {get; set;}
     }

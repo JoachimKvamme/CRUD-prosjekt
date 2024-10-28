@@ -18,12 +18,13 @@ namespace CRUD_prosjekt.Mappers
                 FirstNameAuthor = bookModel.FirstNameAuthor,
                 LastNameAuthor = bookModel.LastNameAuthor,
                 Year = bookModel.Year,
+                Publisher = bookModel.Publisher,
                 Place = bookModel.Place,
                 ProjectId = bookModel.ProjectId
             };
         }
 
-        public static Book ToBookFromCreate(this CreateBookRequestDto bookDto) 
+        public static Book ToBookFromCreate(this CreateBookRequestDto bookDto, int projectId) 
         {
             return new Book 
             {
@@ -31,8 +32,9 @@ namespace CRUD_prosjekt.Mappers
                 FirstNameAuthor = bookDto.FirstNameAuthor,
                 LastNameAuthor = bookDto.LastNameAuthor,
                 Year = bookDto.Year,
+                Publisher = bookDto.Publisher,
                 Place = bookDto.Place,
-                
+                ProjectId = projectId
             };
         }
     }
