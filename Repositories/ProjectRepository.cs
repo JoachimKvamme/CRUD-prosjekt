@@ -6,6 +6,7 @@ using CRUD_prosjekt.Data;
 using CRUD_prosjekt.Dto.Project;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Models;
+using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 
 namespace CRUD_prosjekt.Repositories
@@ -65,7 +66,6 @@ namespace CRUD_prosjekt.Repositories
             return existingProject;
 
         }
-
         
     }
 }

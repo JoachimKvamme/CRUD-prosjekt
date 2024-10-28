@@ -78,5 +78,19 @@ namespace CRUD_prosjekt.Controllers
             return Ok(bookModel.ToBookDto());
         }        
 
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+            
+            var bookModel = await _bookRepo.DeleteAsync(id);
+
+            if(bookModel == null)
+                return NotFound();
+            
+            return NoContent();
+        }
     }
 }
