@@ -57,8 +57,11 @@ namespace CRUD_prosjekt.Repositories
             existingBook.FirstNameAuthor = bookDto.FirstNameAuthor;
             existingBook.LastNameAuthor = bookDto.LastNameAuthor;
             existingBook.Year = bookDto.Year;
+            existingBook.Publisher = bookDto.Publisher;
             existingBook.Place = bookDto.Place;
 
+            await _context.SaveChangesAsync();
+            
             return existingBook;
         }
     }
