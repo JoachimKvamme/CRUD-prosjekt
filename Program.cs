@@ -2,6 +2,7 @@ using CRUD_prosjekt.Data;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Models;
 using CRUD_prosjekt.Repositories;
+using CRUD_prosjekt.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -58,6 +59,7 @@ builder.Services.AddAuthentication(options => {
 
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>(); 
 builder.Services.AddScoped<IBookRepository , BookRepository>(); 
+builder.Services.AddScoped<ITokenInterface, TokenService>();
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options => 
