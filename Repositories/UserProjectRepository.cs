@@ -17,9 +17,9 @@ namespace CRUD_prosjekt.Repositories
             _context = context;            
         }
 
-        public Task<List<UserProject>> GetAllProjects()
+        public async Task<List<UserProject>> GetAllProjects()
         {
-            throw new NotImplementedException();
+            return await _context.UserProjects.ToListAsync();
         }
 
         public async Task<List<Book>> GetUserProjects(int id)
@@ -27,7 +27,7 @@ namespace CRUD_prosjekt.Repositories
             return await _context.UserProjects.Where(u => u.ProjectId == id)
                 .Select(book => new Book
                 {
-                    Id = book.ProjectId,
+                    Id = book.BookId,
                     Title = book.Book.Title,
                     FirstNameAuthor = book.Book.FirstNameAuthor,
                     LastNameAuthor = book.Book.LastNameAuthor,

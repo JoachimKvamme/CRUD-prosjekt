@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using CRUD_prosjekt.Extensions;
@@ -28,13 +29,20 @@ namespace CRUD_prosjekt.Controllers
             _userProjectRepo = userProjectRepo;
         }
 
-        [HttpGet("id:int")]
+        [HttpGet("{id:int}")]
         //[Authorize]
         public async Task<IActionResult> GetUserProject([FromRoute] int id)
         {
 
             //var project = await _projectRepo.GetByIdAsync(id);
             var userProjects = await _userProjectRepo.GetUserProjects(id);
+            return Ok(userProjects);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllUserProjects()
+        {
+            var userProjects = await _userProjectRepo.GetAllProjects();
             return Ok(userProjects);
         }
 
