@@ -24,7 +24,7 @@ namespace CRUD_prosjekt.Mappers
             };
         }
 
-        public static Book ToBookFromCreate(this CreateBookRequestDto bookDto, int projectId) 
+        public static Book ToBookFromCreate(this CreateBookRequestDto bookDto) 
         {
             return new Book 
             {

@@ -85,6 +85,9 @@ builder.Services.AddAuthentication(options => {
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>(); 
 builder.Services.AddScoped<IBookRepository , BookRepository>(); 
 builder.Services.AddScoped<ITokenInterface, TokenService>();
+builder.Services.AddScoped<IUserProjectRepository, UserProjectRepository>();
+
+
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options => 

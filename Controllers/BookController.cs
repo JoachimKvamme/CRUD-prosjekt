@@ -48,16 +48,14 @@ namespace CRUD_prosjekt.Controllers
             return Ok(book.ToBookDto());
         }
 
-        [HttpPost("{projectId:int}")]
-        public async Task<IActionResult> Create([FromRoute] int projectId, [FromBody] CreateBookRequestDto bookDto)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateBookRequestDto bookDto)
         {
             if(!ModelState.IsValid)
                 return BadRequest();
-            
-            if(!await _projectRepo.ProjectExists(projectId))
-                return BadRequest("Project does not exist");
+        
 
-            var bookModel = bookDto.ToBookFromCreate(projectId);
+            var bookModel = bookDto.ToBookFromCreate();
 
             await _bookRepo.CreateAsync(bookModel);
             return CreatedAtAction(nameof(GetById), new {id = bookModel.Id}, bookModel.ToBookDto());

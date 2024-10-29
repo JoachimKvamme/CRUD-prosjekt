@@ -8,6 +8,6 @@ namespace CRUD_prosjekt.Models
 {
     public class AppUser : IdentityUser
     {
-        public List<Project> Projects { get; set; } = new List<Project>();
+        //public List<Project> Projects { get; set; } = new List<Project>();
     }
 }

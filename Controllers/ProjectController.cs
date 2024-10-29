@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using CRUD_prosjekt.Data;
 using CRUD_prosjekt.Dto;
 using CRUD_prosjekt.Dto.Project;
+using CRUD_prosjekt.Extensions;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Mappers;
 using CRUD_prosjekt.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
@@ -22,14 +24,17 @@ namespace CRUD_prosjekt.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IProjectRepository _projectRepo;
-        public ProjectController(ApplicationDbContext context, IProjectRepository projectRepo)
+        private readonly UserManager<AppUser> _userManager;
+        public ProjectController(ApplicationDbContext context, IProjectRepository projectRepo,
+        UserManager<AppUser> userManager)
         {
             _context = context;
             _projectRepo = projectRepo;
+            _userManager = userManager;
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAll() 
         {
             var projects = await _projectRepo.GetAllAsync();
@@ -77,6 +82,11 @@ namespace CRUD_prosjekt.Controllers
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
+
+            //var username = User.GetUserName();
+            
+            
+            //var appUser = await _userManager.FindByNameAsync(username);
             
             var projectModel = projectDto.ToProjectFromCreateDto();
 

@@ -21,6 +21,8 @@ namespace CRUD_prosjekt.Repositories
         }
         public async Task<Project> CreateAsync(Project projectModel)
         {
+            //var username = User.GetUserName();
+            //var appUser = await _userManager.FindByNameAsync(username);
             await _context.Projects.AddAsync(projectModel);
             await _context.SaveChangesAsync();
             return projectModel;
