@@ -8,6 +8,7 @@ using CRUD_prosjekt.Dto.Project;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Mappers;
 using CRUD_prosjekt.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
@@ -28,6 +29,7 @@ namespace CRUD_prosjekt.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAll() 
         {
             var projects = await _projectRepo.GetAllAsync();

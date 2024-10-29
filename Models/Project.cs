@@ -9,6 +9,6 @@ namespace CRUD_prosjekt.Models
     {
         public int Id {get; set;}
         public string Title {get; set;} = string.Empty;
-        public List<Book> Books {get; set;} = new List<Book>();
+        
     }
 }

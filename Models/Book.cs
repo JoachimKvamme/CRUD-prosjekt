@@ -14,7 +14,6 @@ namespace CRUD_prosjekt.Models
         public int Year {get; set;}
         public string Publisher {get; set;} = string.Empty;
         public string Place { get; set; } = string.Empty;
-        public int? ProjectId {get; set;}
-        public Project? Project {get; set;}
+
     }
 }
