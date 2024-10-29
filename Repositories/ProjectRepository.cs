@@ -41,24 +41,14 @@ namespace CRUD_prosjekt.Repositories
 
         public async Task<List<Project>> GetAllAsync()
         {
-            var projects = _context.Projects.Include(b => b.Books);
+            var projects = _context.Projects;
             return await projects.ToListAsync();
         }
 
-        public async Task<List<Book>> GetBookListById(int id)
-        {
-            var projectModel = await _context.Projects.Include(b => b.Books).FirstOrDefaultAsync(p => p.Id == id);
-
-            if(projectModel == null)
-                return null;
-            
-            var bookList =  projectModel.Books.Where(b => b.ProjectId == id).ToList();
-            return bookList;
-        }
 
         public async Task<Project?> GetByIdAsync(int id)
         {
-            return await _context.Projects.Include(b => b.Books).FirstOrDefaultAsync(p => p.Id == id);
+            return await _context.Projects.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         

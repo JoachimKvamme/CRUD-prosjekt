@@ -20,7 +20,7 @@ namespace CRUD_prosjekt.Mappers
                 Year = bookModel.Year,
                 Publisher = bookModel.Publisher,
                 Place = bookModel.Place,
-                ProjectId = bookModel.ProjectId
+            
             };
         }
 
@@ -34,7 +34,7 @@ namespace CRUD_prosjekt.Mappers
                 Year = bookDto.Year,
                 Publisher = bookDto.Publisher,
                 Place = bookDto.Place,
-                ProjectId = projectId
+
             };
         }
 

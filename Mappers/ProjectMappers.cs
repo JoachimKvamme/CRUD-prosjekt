@@ -16,7 +16,7 @@ namespace CRUD_prosjekt.Mappers
             {
                 Id = projectModel.Id,
                 Title = projectModel.Title,
-                Books = projectModel.Books.Select(b => b.ToBookDto()).ToList()
+                AppUserId = projectModel.AppUserId
             };
         }
 
@@ -24,7 +24,7 @@ namespace CRUD_prosjekt.Mappers
         {
             return new Project 
             {
-                Title = projectDto.Title,
+                Title = projectDto.Title
             };
         }
     }

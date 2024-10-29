@@ -49,28 +49,28 @@ namespace CRUD_prosjekt.Controllers
             return Ok(project);
         }
 
-        [HttpGet("/booklist/{id:int}")]
-        public async Task<IActionResult> GetFormattedBookList([FromRoute] int id)
-        {
-            List<string> formattedBookList = [];
-            if(!ModelState.IsValid)
-                return BadRequest(ModelState);
+        // [HttpGet("/booklist/{id:int}")]
+        // public async Task<IActionResult> GetFormattedBookList([FromRoute] int id)
+        // {
+        //     List<string> formattedBookList = [];
+        //     if(!ModelState.IsValid)
+        //         return BadRequest(ModelState);
 
-            var bookList = await _projectRepo.GetBookListById(id);
+        //     var bookList = await _projectRepo.GetBookListById(id);
 
-            if(bookList == null)
-                return NotFound();
+        //     if(bookList == null)
+        //         return NotFound();
 
-            List<Book> sortedBookList = bookList.OrderBy(b => b.LastNameAuthor).ToList();
-            foreach (var book in sortedBookList)
-            {
-                string formattedBook = $"{book.LastNameAuthor}, {book.FirstNameAuthor[0]}. ({book.Year}) {book.Title}. {book.Place}: {book.Publisher}.";
-                formattedBookList.Add(formattedBook);
-            }
+        //     List<Book> sortedBookList = bookList.OrderBy(b => b.LastNameAuthor).ToList();
+        //     foreach (var book in sortedBookList)
+        //     {
+        //         string formattedBook = $"{book.LastNameAuthor}, {book.FirstNameAuthor[0]}. ({book.Year}) {book.Title}. {book.Place}: {book.Publisher}.";
+        //         formattedBookList.Add(formattedBook);
+        //     }
 
-            return Ok(formattedBookList);
+        //     return Ok(formattedBookList);
 
-        }
+        // }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProjectRequestDto projectDto)
