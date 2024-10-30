@@ -1,3 +1,6 @@
+// Ting som ville vært fine å ha, men som ikke har øyeblikkelig prioritet.
+
 * Endre Book-klassen slik at den kan ta flere forfattere.
 * Knytte prosjekter til brukere
 * Få opp bøker som er knyttet til prosjekter, sammen med GetAll i ProjectController
+* Finne en bokliste på nett, sånn at man automatisk kan søke opp og legge til titler
