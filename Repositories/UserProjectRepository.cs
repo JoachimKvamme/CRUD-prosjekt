@@ -24,6 +24,19 @@ namespace CRUD_prosjekt.Repositories
             return userProject;
         }
 
+        public async Task<UserProject> DeleteUserProject(int projectId, int bookId)
+        {
+            var userProjectModel = await _context.UserProjects.FirstOrDefaultAsync(x => x.ProjectId == projectId && x.BookId == bookId);
+            
+            if(userProjectModel == null)
+                return null;
+            
+            _context.UserProjects.Remove(userProjectModel);
+            await _context.SaveChangesAsync();
+            return userProjectModel;
+            
+        }
+
         public async Task<List<UserProject>> GetAllProjects()
         {
             return await _context.UserProjects.ToListAsync();

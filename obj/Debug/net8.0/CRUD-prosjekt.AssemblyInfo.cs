@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CRUD-prosjekt")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1051ea06b7dab967950e32e721275a9051c61da6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ea4b477c7dcf60a8bad660e8460e2a4a174d263")]
 [assembly: System.Reflection.AssemblyProductAttribute("CRUD-prosjekt")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CRUD-prosjekt")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

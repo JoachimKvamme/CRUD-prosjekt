@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using CRUD_prosjekt.Extensions;
@@ -80,6 +81,25 @@ namespace CRUD_prosjekt.Controllers
                     return Created();
                 }
    
+            }
+
+            [HttpDelete("{projectId:int}")]
+            public async Task<IActionResult> DeleteUserProject([FromRoute] int projectId, [FromBody] int bookId)
+            {
+                var userProject = await _userProjectRepo.GetUserProjects(projectId);
+
+                var filteredUserProject = userProject.Where(b => b.Id == bookId).ToList();
+
+                if(filteredUserProject.Count() > 0)
+                {
+                    await _userProjectRepo.DeleteUserProject(projectId, bookId);
+                } 
+                else
+                {
+                    return BadRequest("Tittelen finnes ikke i prosjektet");
+                }
+
+                return Ok();
             }
             
         }
