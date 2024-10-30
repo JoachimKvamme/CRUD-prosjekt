@@ -1,0 +1,3 @@
+* Endre Book-klassen slik at den kan ta flere forfattere.
+* Knytte prosjekter til brukere
+* Få opp bøker som er knyttet til prosjekter, sammen med GetAll i ProjectController
