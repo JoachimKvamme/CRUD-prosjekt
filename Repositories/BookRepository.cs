@@ -47,6 +47,11 @@ namespace CRUD_prosjekt.Repositories
             return await _context.Books.FirstOrDefaultAsync(b => b.Id == id);
         }
 
+        public async Task<Book?> GetByTitleAsync(string title)
+        {
+            return await _context.Books.FirstOrDefaultAsync(b => b.Title.ToLower() == title.ToLower());
+        }
+
         public async Task<Book?> UpdateAsync(int id, UpdateBookDto bookDto)
         {
             var existingBook = await _context.Books.FindAsync(id);

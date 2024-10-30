@@ -17,6 +17,11 @@ namespace CRUD_prosjekt.Repositories
             _context = context;            
         }
 
+        public async Task<UserProject> CreateAsync(UserProject userProject)
+        {
+            
+        }
+
         public async Task<List<UserProject>> GetAllProjects()
         {
             return await _context.UserProjects.ToListAsync();

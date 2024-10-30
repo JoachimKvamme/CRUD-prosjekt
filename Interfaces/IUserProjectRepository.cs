@@ -10,5 +10,6 @@ namespace CRUD_prosjekt.Interfaces
     {
         Task<List<Book>> GetUserProjects(int id);
         Task<List<UserProject>> GetAllProjects();
+        Task<UserProject> CreateAsync(UserProject userProject);
     }
 }

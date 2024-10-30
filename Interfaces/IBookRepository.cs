@@ -12,6 +12,7 @@ namespace CRUD_prosjekt.Interfaces
     {
         Task<List<Book>> GetAllAsync();
         Task<Book?> GetByIdAsync(int id);
+        Task<Book?> GetByTitleAsync(string title);
         Task<Book> CreateAsync(Book bookModel);
         Task<Book?> UpdateAsync(int id, UpdateBookDto bookDto);
         Task<Book?> DeleteAsync(int id);
