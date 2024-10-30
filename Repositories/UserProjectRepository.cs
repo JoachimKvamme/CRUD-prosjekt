@@ -19,7 +19,9 @@ namespace CRUD_prosjekt.Repositories
 
         public async Task<UserProject> CreateAsync(UserProject userProject)
         {
-            
+            await _context.UserProjects.AddAsync(userProject);
+            await _context.SaveChangesAsync();
+            return userProject;
         }
 
         public async Task<List<UserProject>> GetAllProjects()

@@ -46,30 +46,16 @@ namespace CRUD_prosjekt.Controllers
             return Ok(userProjects);
         }
 
-        [HttpPost("{id:int}")]
-        public async Task<IActionResult> AddUserProject([FromBody]string? title, [FromBody] int? id, [FromRoute] int projectId)
+        [HttpPost("{projectId:int}")]
+        public async Task<IActionResult> AddUserProject([FromBody] int id, [FromRoute] int projectId)
         {
             var project = _projectRepo.GetByIdAsync(projectId);
             if(project == null)
                 return NotFound("Prosjektet finnes ikke");
 
-            if(title != null)
-            {
-                var book = await _bookRepo.GetByTitleAsync(title);
-                if(book == null)
-                    return NotFound($"Det finnes ikke en bok med tittelen {title}. Sjekk at du har skrevet tittelen riktig, og at dokumentet er lagt til.");
-                var userProject = await _userProjectRepo.GetUserProjects(projectId);
-                
-                if(userProject.Any(e => e.Title.ToLower() == book.Title.ToLower()))
-                    return BadRequest("Tittelen du prøver å legge til, er allerede forbundet med prosjektet.");
 
-                
-                
-            } 
-            else if (id != null)
-            {
-                var book = await _bookRepo.GetByIdAsync((int)id);
-                if(book == null)
+            var book = await _bookRepo.GetByIdAsync(id);
+            if(book == null)
                     return NotFound($"Det finnes ikke en bok med IDen {id}. Sjekk at du har skrevet riktig nummmer, og at dokumentet er lagt til.");
 
                 var userProject = await _userProjectRepo.GetUserProjects(projectId);
@@ -79,19 +65,22 @@ namespace CRUD_prosjekt.Controllers
                 
                 var userProjectModel = new UserProject
                 {
-                    ProjectId = project.Id,
+                    ProjectId = projectId,
                     BookId = book.Id
                 };
 
-                
+                await _userProjectRepo.CreateAsync(userProjectModel);
+
+                if(userProjectModel == null)
+                {
+                    return StatusCode(500, "Could not create.");
+                }
+                else
+                {
+                    return Created();
+                }
    
             }
-            else
-            {
-                return BadRequest("Du må skrive inn en gyldig tittel eller bokId");
-            }
-
             
         }
     }
-}
