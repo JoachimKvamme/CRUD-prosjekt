@@ -33,3 +33,43 @@ async function showBookData() {
     bookList.appendChild(document.createElement("br"));
   });
 }
+
+async function addBookForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeAddBookForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+async function addBook() {
+  document
+    .getElementById("bookForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent form submission
+      const title = document.getElementById("title").value;
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const year = document.getElementById("year").value;
+      const publisher = document.getElementById("publisher").value;
+      const place = document.getElementById("place").value;
+    });
+
+  fetch("api/project", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: ``,
+      firstNameAuthor: ``,
+      lastNameAuthor: ``,
+      year: 0,
+      publisher: "string",
+      place: "string",
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error("Error:", error));
+}
