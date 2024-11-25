@@ -50,27 +50,48 @@
         <input
           type="text"
           placeholder="Skriv tittel på verket"
-          name="tittel"
+          name="title"
+          id="title"
           required
         />
         <label for="firstName"><b>Forfatterens fornavn</b></label>
-        <input type="text" placeholder="Fornavn" name="firstName" required />
+        <input
+          type="text"
+          placeholder="Fornavn"
+          name="firstName"
+          id="firstName"
+        />
         <label for="lastName"><b>Forfatterens etternavn</b></label>
-        <input type="text" placeholder="Etternavn" name="lastName" required />
+        <input
+          type="text"
+          placeholder="Etternavn"
+          name="lastName"
+          id="lastName"
+          required
+        />
         <label for="year"><b>Utgivelsesår</b></label>
-        <input type="text" placeholder="År" name="year" required />
+        <input type="number" placeholder="År" name="year" id="year" />
 
         <label for="publisher"><b>Forlag</b></label>
         <input
           type="text"
           placeholder="Forlaget verket ble utgitt på"
           name="publisher"
+          id="publisher"
           required
         />
         <label for="place"><b>Sted</b></label>
-        <input type="text" placeholder="Utgivelsessted" name="place" required />
+        <input
+          type="text"
+          placeholder="Utgivelsessted"
+          name="place"
+          id="place"
+          required
+        />
 
-        <button type="submit" class="btn">Legg til bok</button>
+        <button type="submit" class="btn" onclick="addBook()">
+          Legg til bok
+        </button>
         <button type="button" class="btn cancel" onclick="closeAddBookForm()">
           Lukk
         </button>

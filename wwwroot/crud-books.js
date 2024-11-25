@@ -35,38 +35,33 @@ async function showBookData() {
 }
 
 async function addBookForm() {
-  document.getElementById("myForm").style.display = "block";
+  document.getElementById("bookForm").style.display = "block";
 }
 
 function closeAddBookForm() {
-  document.getElementById("myForm").style.display = "none";
+  document.getElementById("bookForm").style.display = "none";
 }
 
 async function addBook() {
-  document
-    .getElementById("bookForm")
-    .addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent form submission
-      const title = document.getElementById("title").value;
-      const firstName = document.getElementById("firstName").value;
-      const lastName = document.getElementById("lastName").value;
-      const year = document.getElementById("year").value;
-      const publisher = document.getElementById("publisher").value;
-      const place = document.getElementById("place").value;
-    });
+  const title = document.getElementById("title").value;
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  const inputYear = document.getElementById("year").value;
+  const publisher = document.getElementById("publisher").value;
+  const place = document.getElementById("place").value;
 
-  fetch("api/project", {
+  fetch("api/books", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      title: ``,
-      firstNameAuthor: ``,
-      lastNameAuthor: ``,
-      year: 0,
-      publisher: "string",
-      place: "string",
+      title: `${title}`,
+      firstNameAuthor: `${firstName}`,
+      lastNameAuthor: `${lastName}`,
+      year: `${inputYear}`,
+      publisher: `${publisher}`,
+      place: `${place}`,
     }),
   })
     .then((response) => response.json())
