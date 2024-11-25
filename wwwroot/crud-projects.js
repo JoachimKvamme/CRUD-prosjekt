@@ -47,6 +47,9 @@ async function addProject() {
     .then((response) => response.json())
     .then((data) => console.log(data))
     .catch((error) => console.error("Error:", error));
+  await showProjectData();
+  document.getElementById("newProjectInput").innerHTML = "";
+  location.reload(true);
 }
 
 async function removeProject(id) {
@@ -61,5 +64,6 @@ async function removeProject(id) {
       }
     })
     .catch((error) => console.error("There was an error!", error));
-  showProjectData();
+  await showProjectData();
+  location.reload(true);
 }
