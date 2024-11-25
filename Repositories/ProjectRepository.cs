@@ -42,6 +42,18 @@ namespace CRUD_prosjekt.Repositories
             return projectModel;
         }
 
+        public async Task<Project?> DeleteByTitleAsync(string title)
+        {
+            var projectModel = await _context.Projects.FirstOrDefaultAsync(p => p.Title == title);
+
+            if (projectModel == null)
+                return null;
+            
+            _context.Projects.Remove(projectModel);
+            await _context.SaveChangesAsync();
+            return projectModel;
+        }
+
         public async Task<List<Project>> GetAllAsync()
         {
             var projects = _context.Projects;
@@ -54,8 +66,6 @@ namespace CRUD_prosjekt.Repositories
         {
             return await _context.Projects.FirstOrDefaultAsync(p => p.Id == id);
         }
-
-        
 
         public Task<bool> ProjectExists(int id)
         {

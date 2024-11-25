@@ -114,6 +114,9 @@ namespace CRUD_prosjekt.Controllers
         }
 
         [HttpDelete]
+        
+
+        [HttpDelete]
         [Route("{id:int}")]
 
         public async Task<IActionResult> Delete([FromRoute] int id)
@@ -128,5 +131,6 @@ namespace CRUD_prosjekt.Controllers
             
             return NoContent();
         }
+
     }
 }

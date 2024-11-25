@@ -4,8 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EndNote-klone (viser det seg)</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body onload="showProjectData()">
+    <h1>
+      Ideen her er en webapplikasjon med funksjonaliteten til programmet EndNote
+    </h1>
+    <h2>
+      Dessverre er min mye styggere og forholdsvis ubrukelig p.t., men til
+      gjengeld tar jeg ikke betalt.
+    </h2>
+    <br />
     <button onclick="showProjectData()">Oppdater prosjektlisten</button>
     <button onclick="showBookData()">Vis bøker i databasen</button>
 
@@ -44,7 +56,8 @@
         </a>
       </li>
     </ul>
+    <script src="crud-books.js"></script>
+    <script src="crud-projects.js"></script>
+    <script src="crud-userProjects.js"></script>
   </body>
-
-  <script src="script.js"></script>
 </html>

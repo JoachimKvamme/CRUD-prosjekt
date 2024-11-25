@@ -1,5 +1,3 @@
-
-
 async function getBookData() {
   const url = "/api/books";
   try {
@@ -35,4 +33,3 @@ async function showBookData() {
     bookList.appendChild(document.createElement("br"));
   });
 }
-
