@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EndNote-klone (viser det seg)</title>
   </head>
-  <body>
-    <button onclick="showProjectData()">Hent prosjekter</button>
-    <button onclick="showBooks()">Vis bøker i databasen</button>
+  <body onload="showProjectData()">
+    <button onclick="showProjectData()">Oppdater prosjektlisten</button>
+    <button onclick="showBookData()">Vis bøker i databasen</button>
 
     <div id="projectList"></div>
     <div id="bookList"></div>
 
     <button onclick="addProject()">Legg til et prosjekt</button>
+    <br />
     <button onclick="addBook()">Legg til en bok</button>
+    <br />
     <button onclick="addBookToProject()">Knytt en bok til et prosjekt</button>
+    <br />
 
     api/userprojects
 
