@@ -117,6 +117,9 @@ app.UseCors(x => x
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseDefaultFiles();
+
+app.UseStaticFiles();
 
 
 app.MapControllers();

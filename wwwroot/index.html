@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EndNote-klone (viser det seg)</title>
+  </head>
+  <body>
+    <button onclick="showProjectData()">Hent prosjekter</button>
+    <button onclick="showBooks()">Vis bøker i databasen</button>
+
+    <div id="projectList"></div>
+    <div id="bookList"></div>
+
+    <button onclick="addProject()">Legg til et prosjekt</button>
+    <button onclick="addBook()">Legg til en bok</button>
+    <button onclick="addBookToProject()">Knytt en bok til et prosjekt</button>
+
+    api/userprojects
+
+    <h3>Endpoints</h3>
+    <ul>
+      <li>
+        <a href="/api/userprojects">
+          <p>/api/userprojects</p>
+        </a>
+      </li>
+      <li>
+        <a href="api/project">
+          <p>/api/projects</p>
+        </a>
+      </li>
+    </ul>
+  </body>
+
+  <script src="script.js"></script>
+</html>

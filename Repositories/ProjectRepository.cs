@@ -7,6 +7,7 @@ using CRUD_prosjekt.Dto.Project;
 using CRUD_prosjekt.Interfaces;
 using CRUD_prosjekt.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,6 +45,7 @@ namespace CRUD_prosjekt.Repositories
         public async Task<List<Project>> GetAllAsync()
         {
             var projects = _context.Projects;
+            
             return await projects.ToListAsync();
         }
 

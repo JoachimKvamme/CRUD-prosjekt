@@ -38,7 +38,9 @@ namespace CRUD_prosjekt.Controllers
         public async Task<IActionResult> GetAll() 
         {
             var projects = await _projectRepo.GetAllAsync();
-            return Ok(projects);
+            var projectDto = projects.Select(p => p.ToProjectDto());
+            
+            return Ok(projectDto);
         }
 
         [HttpGet("{id:int}")]
