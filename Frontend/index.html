@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TBH</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="showProjectData()">
+    <h1></h1>
+    <h2></h2>
+    <br />
+    <button onclick="showProjectData()">Oppdater prosjektlisten</button>
+    <button onclick="showBookData()">Vis bøker i databasen</button>
+
+    <div id="projectList"></div>
+    <div id="bookList"></div>
+
+    <input
+      id="newProjectInput"
+      type="text"
+      placeholder="Skriv inn tittelen på ditt nye prosjekt her"
+    />
+    <br />
+
+    <button onclick="addProject()">Legg til et nytt prosjekt</button>
+    <br />
+
+    <br />
+    <button class="open-button" onclick="addBookForm()">
+      Legg til en ny bok i databasen
+    </button>
+
+    <div class="form-popup" id="bookForm">
+      <form class="form-container">
+        <h1>Nytt verk</h1>
+
+        <label for="title"><b>Tittel</b></label>
+        <input
+          type="text"
+          placeholder="Skriv tittel på verket"
+          name="title"
+          id="title"
+          required
+        />
+        <label for="firstName"><b>Forfatterens fornavn</b></label>
+        <input
+          type="text"
+          placeholder="Fornavn"
+          name="firstName"
+          id="firstName"
+        />
+        <label for="lastName"><b>Forfatterens etternavn</b></label>
+        <input
+          type="text"
+          placeholder="Etternavn"
+          name="lastName"
+          id="lastName"
+          required
+        />
+        <label for="year"><b>Utgivelsesår</b></label>
+        <input type="number" placeholder="År" name="year" id="year" />
+
+        <label for="publisher"><b>Forlag</b></label>
+        <input
+          type="text"
+          placeholder="Forlaget verket ble utgitt på"
+          name="publisher"
+          id="publisher"
+          required
+        />
+        <label for="place"><b>Sted</b></label>
+        <input
+          type="text"
+          placeholder="Utgivelsessted"
+          name="place"
+          id="place"
+          required
+        />
+
+        <button type="submit" class="btn" onclick="addBook()">
+          Legg til bok
+        </button>
+        <button type="button" class="btn cancel" onclick="closeAddBookForm()">
+          Lukk
+        </button>
+      </form>
+    </div>
+    <br />
+    <br />
+    <button onclick="addBookToProject()">Knytt en bok til et prosjekt</button>
+    <br />
+
+    <h3>Endpoints</h3>
+    <ul>
+      <li>
+        <a href="/api/userprojects">
+          <p>/api/userprojects</p>
+        </a>
+      </li>
+      <li>
+        <a href="api/project">
+          <p>/api/projects</p>
+        </a>
+      </li>
+    </ul>
+    <script src="crud-books.js"></script>
+    <script src="crud-projects.js"></script>
+    <script src="crud-userProjects.js"></script>
+  </body>
+</html>

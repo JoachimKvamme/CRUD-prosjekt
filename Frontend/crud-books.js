@@ -23,13 +23,16 @@ async function showBookData() {
   container.appendChild(bookList);
   data.forEach((element) => {
     let bookItem = document.createElement("li");
-    bookItem.innerText = `Tittel: ${element.title}, 
-      Forfatternavn: ${element.firstNameAuthor}, ${element.lastNameAuthor},
+    bookItem.innerText = ` ${document.createElement("button")} Tittel: ${
+      element.title
+    }, 
+      Forfaernavn: ${element.firstNameAuthor}, ${element.lastNameAuthor},
       Utgivelsesår: ${element.year},
       Forlag: ${element.publisher},
       Sted: ${element.place}`;
 
     bookList.appendChild(bookItem);
+    bookItem.appendChild(removeButton);
     bookList.appendChild(document.createElement("br"));
   });
 }
