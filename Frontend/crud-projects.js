@@ -1,5 +1,5 @@
 async function getProjectData() {
-  const url = "/api/project";
+  const url = "http://localhost:5024/api/project";
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -26,7 +26,7 @@ async function showProjectData() {
     projectItem.innerHTML = ``;
     projectItem.innerHTML = `<button id="${element.id}" class="btn" onclick="removeProject(this.id)">
       <i class="fa fa-trash"></i>
-    </button>  Prosjekttittel: <a href="api/userprojects/${element.id}">${element.title}</a>`;
+    </button>  Prosjekttittel: <a href="http://localhost:5024/api/userprojects/${element.id}">${element.title}</a>`;
     projectList.appendChild(projectItem);
     projectList.appendChild(document.createElement("br"));
   });
@@ -35,7 +35,7 @@ async function showProjectData() {
 
 async function addProject() {
   let userInputTitle = document.getElementById("newProjectInput");
-  fetch("api/project", {
+  fetch("http://localhost:5024/api/project", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +53,7 @@ async function addProject() {
 }
 
 async function removeProject(id) {
-  fetch(`api/project/${id}`, {
+  fetch(`http://localhost:5024/api/project/${id}`, {
     method: "DELETE",
   })
     .then((response) => {

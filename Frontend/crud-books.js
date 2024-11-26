@@ -1,5 +1,5 @@
 async function getBookData() {
-  const url = "/api/books";
+  const url = "http://localhost:5024/api/books";
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -23,16 +23,18 @@ async function showBookData() {
   container.appendChild(bookList);
   data.forEach((element) => {
     let bookItem = document.createElement("li");
-    bookItem.innerText = ` ${document.createElement("button")} Tittel: ${
-      element.title
-    }, 
-      Forfaernavn: ${element.firstNameAuthor}, ${element.lastNameAuthor},
+    let removeBook = document.createElement("button");
+    removeBook.classList.add("btn");
+    removeBook.classList.add("fa-trash");
+
+    bookItem.innerText = `Tittel: ${element.title}, 
+      Forfatternavn: ${element.firstNameAuthor}, ${element.lastNameAuthor},
       Utgivelsesår: ${element.year},
       Forlag: ${element.publisher},
       Sted: ${element.place}`;
 
     bookList.appendChild(bookItem);
-    bookItem.appendChild(removeButton);
+    bookList.appendChild(removeBook);
     bookList.appendChild(document.createElement("br"));
   });
 }
@@ -53,7 +55,7 @@ async function addBook() {
   const publisher = document.getElementById("publisher").value;
   const place = document.getElementById("place").value;
 
-  fetch("api/books", {
+  fetch("http://localhost:5024/api/books", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
