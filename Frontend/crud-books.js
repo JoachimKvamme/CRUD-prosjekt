@@ -24,8 +24,8 @@ async function showBookData() {
   data.forEach((element) => {
     let bookItem = document.createElement("li");
     let removeBook = document.createElement("button");
-    removeBook.classList.add("btn");
-    removeBook.classList.add("fa-trash");
+    removeBook.innerHTML = `<button id="${element.id}" class="btn" onclick="removeBook(this.id)">
+      <i class="fa fa-trash"></i>`;
 
     bookItem.innerText = `Tittel: ${element.title}, 
       Forfatternavn: ${element.firstNameAuthor}, ${element.lastNameAuthor},
@@ -74,3 +74,20 @@ async function addBook() {
     .catch((error) => console.error("Error:", error));
 }
 
+async function removeBook(id) {
+  console.log(id);
+
+  fetch(`http://localhost:5024/api/books/${id}`, {
+    method: "DELETE",
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("Delete successful");
+      } else {
+        console.error("Delete failed");
+      }
+    })
+    .catch((error) => console.error("There was an error!", error));
+  await showBookData();
+  location.reload(true);
+}
